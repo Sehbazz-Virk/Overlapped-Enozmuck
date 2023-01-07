@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 public class LoginFragment extends Fragment {
 
     public LoginFragment() {
-        super()
+        super(R.layout.login_fragment);
     }
 
 }
