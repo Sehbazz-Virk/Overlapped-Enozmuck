@@ -22,6 +22,7 @@ public class Database {
 
     private Database() {
         db = FirebaseFirestore.getInstance();
+        events = db.collection("eventsTester");
 
     }
 
@@ -33,7 +34,7 @@ public class Database {
     }
 
     public void addEventTest(UUID ownerID) {
-        events = db.collection("eventsTester");
+
         Map<String, Object> eventDetails = new HashMap<>();
         eventDetails.put("owner", ownerID.toString());
         events.document(UUID.randomUUID().toString()).set(eventDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -48,4 +49,27 @@ public class Database {
         });
         //events.add(eventDetails);
     }
+
+    public void addEventTest(UUID ownerID) {
+
+        Map<String, Object> eventDetails = new HashMap<>();
+        Map<string, Map> month;
+
+        Map<string, Map> map;
+
+        month.put("2", map);
+        eventDetails.put("months", month);
+        events.document(UUID.randomUUID().toString()).set(eventDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.d("wow", "yay");
+                } else {
+                    Log.d("balls","balls");
+                }
+            }
+        });
+        //events.add(eventDetails);
+    }
+
 }
