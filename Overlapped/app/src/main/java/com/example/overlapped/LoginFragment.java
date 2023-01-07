@@ -29,13 +29,11 @@ public class LoginFragment extends Fragment {
         initializeViews();
     }
 
-    public void initializeViews() {
+    private void initializeViews() {
         this.confirm = (Button) this.myView.findViewById(R.id.button_confirm);
         this.register = (Button) this.myView.findViewById(R.id.button_alternative);
         this.emailEntry = (EditText) this.myView.findViewById(R.id.email_entry);
         this.passwordEntry = (EditText) this.myView.findViewById(R.id.password_entry);
-
-        
     }
 
 }
