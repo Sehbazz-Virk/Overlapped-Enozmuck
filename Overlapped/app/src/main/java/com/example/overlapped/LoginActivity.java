@@ -2,6 +2,7 @@ package com.example.overlapped;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth auth = FirebaseAuth.getInstance();
 
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +38,22 @@ public class LoginActivity extends AppCompatActivity {
     public void showLoginFragment() {
 
         // launch login fragment
+        this.fragmentManager.beginTransaction()
+                .replace(R.id.login_fragment_container, LoginFragment.class, null, "LoginFrag")
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
 
     }
 
     public void showRegisterFragment() {
 
         // launch register fragment
-
+        this.fragmentManager.beginTransaction()
+                .replace(R.id.login_fragment_container, RegisterFragment.class, null, "RegisterFrag")
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
     }
 
     public void launchApp() {
