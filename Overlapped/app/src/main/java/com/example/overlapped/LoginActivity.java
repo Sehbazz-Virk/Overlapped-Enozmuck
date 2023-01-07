@@ -17,7 +17,5 @@ public class LoginActivity extends AppCompatActivity {
         db = Database.getInstance();
         db.addEventTest(UUID.randomUUID());
 
-
-
     }
 }
