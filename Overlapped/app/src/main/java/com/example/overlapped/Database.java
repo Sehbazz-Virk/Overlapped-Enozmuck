@@ -11,7 +11,7 @@ public class Database {
 
     private Database() {
         db = FirebaseFirestore.getInstance();
-
+        events = db.collection("events");
     }
 
     public static Database getInstance() {
