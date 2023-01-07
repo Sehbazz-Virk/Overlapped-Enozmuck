@@ -48,34 +48,49 @@ public class LoginFragment extends Fragment {
         this.emailEntry = (EditText) this.myView.findViewById(R.id.email_entry);
         this.passwordEntry = (EditText) this.myView.findViewById(R.id.password_entry);
 
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signInEmailPassword();
+            }
+        });
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((LoginActivity)getActivity()).showRegisterFragment();
+            }
+        });
 
     }
 
     /**
      * This method signs in a user. If successfully signed in, the app opens. Otherwise, the user is notified to re-attempt login
-     * @param email email address specified by user
-     * @param password password entered by user
      */
-    private void signInEmailPassword(String email, String password) {
+    private void signInEmailPassword() {
+
+        String email = emailEntry.getText().toString();
+        String password = passwordEntry.getText().toString();
+
         if (email.equals("") || password.equals("")) {
-            password_ET.setError("Invalid login");
-            email_ET.setError("Invalid login");
+            passwordEntry.setError("Invalid login");
+            emailEntry.setError("Invalid login");
             return;
         }
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Log.i("AUTH", "LOGGED IN");
-                password_ET.setError(null);
-                email_ET.setError(null);
+                passwordEntry.setError(null);
+                emailEntry.setError(null);
                 ((LoginActivity)getActivity()).launchApp();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.i("AUTH", "LOG IN FAILED");
-                password_ET.setError("Invalid login");
-                email_ET.setError("Invalid login");
+                passwordEntry.setError("Invalid login");
+                emailEntry.setError("Invalid login");
 
             }
         });

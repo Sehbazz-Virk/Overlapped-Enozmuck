@@ -27,16 +27,20 @@ public class LoginActivity extends AppCompatActivity {
         if (auth.getCurrentUser() != null) {
             launchApp();
         } else {
-            launchLogin();
+            showLoginFragment();
         }
-
-
 
     }
 
-    public void launchLogin() {
+    public void showLoginFragment() {
 
         // launch login fragment
+
+    }
+
+    public void showRegisterFragment() {
+
+        // launch register fragment
 
     }
 
