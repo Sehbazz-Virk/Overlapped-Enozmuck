@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "753215289761",
+    "project_id": "overlapped-65795",
+    "storage_bucket": "overlapped-65795.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753215289761:android:fee4f00f5b66bdfd9873e0",
+        "android_client_info": {
+          "package_name": "com.example.overlapped"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "753215289761-j7h25h3p9tdobnds6nlm6ujm4dpt4k79.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.overlapped",
+            "certificate_hash": "6c743f91f68b1a52b965808a2343d5387cd83382"
+          }
+        },
+        {
+          "client_id": "753215289761-61m6t5c6ra1o6s36pk1gp5hars1pl7ie.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkacRtjAEs75PnwGxETw-rnswkS3bvQYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "753215289761-61m6t5c6ra1o6s36pk1gp5hars1pl7ie.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
