@@ -4,8 +4,6 @@ import android.app.AlertDialog;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 /*
     Class to handle the selection of various times for which the
@@ -16,12 +14,12 @@ import java.util.Locale;
     event class.
     //TODO: Need to implement an interface
  */
-public class TimeSelect {
+public class DateSelect {
     ArrayList<LocalDate> datesSelected;
     AlertDialog timeDialog = null;
 
 
-    public TimeSelect() {
+    public DateSelect() {
         this.datesSelected = new ArrayList<>();
     }
 
@@ -30,7 +28,7 @@ public class TimeSelect {
     }
 
     //Main event call to handle the user input for date selection:
-    public selectEventTime() {
+    public launchDateSelect() {
         //Create dialog here:
     }
 
