@@ -41,6 +41,20 @@ public class RegisterFragment extends Fragment {
         this.cancel = (Button) this.myView.findViewById(R.id.button_cancel_register);
         this.emailEntry = (EditText) this.myView.findViewById(R.id.register_email_entry);
         this.passwordEntry = (EditText) this.myView.findViewById(R.id.register_password_entry);
+
+        this.confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signUpEmailPassword();
+            }
+        });
+
+        this.cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((LoginActivity)getActivity()).showLoginFragment();
+            }
+        });
     }
 
     private void signUpEmailPassword() {
