@@ -33,6 +33,7 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
     public void onViewCreated(@NonNull View view, Bundle savedInstance) {
         this.myView = view;
 
+
         initializeViews();
     }
 
@@ -67,6 +68,8 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
         eventRecyclerView.setAdapter(recyclerAdapter);
         eventRecyclerView.setHasFixedSize(false);
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        recyclerAdapter.setEventClickListener(this);
+
 
     }
 
