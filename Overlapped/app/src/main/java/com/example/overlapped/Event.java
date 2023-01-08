@@ -6,26 +6,16 @@ public abstract class Event {
     String id;
     User owner;
     User[] users;
-    LocalDateTime times;
 
-    Database db = new Database().getInstance();
+    Database db = Database.getInstance();
 
     // Base constructor
     public Event(){}
 
     // Constructor for creating a new Event that does not already exist
-    public Event(User owner, User[] users, LocalDateTime times){
+    public Event(User owner, User[] users){
         this.owner = owner;
         this.users = users;
-        this.times = times;
-    }
-
-    // Constructor for associating this Event object to an event that is in the database
-    public Event(String id){
-        this.id = id;
-
-        // fetch info from db
-
     }
 
     public String getId() {
@@ -52,11 +42,7 @@ public abstract class Event {
         this.users = users;
     }
 
-    public LocalDateTime getTimes() {
-        return times;
-    }
+    public void addUser(User user) {
 
-    public void setTimes(LocalDateTime times) {
-        this.times = times;
     }
 }
