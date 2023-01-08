@@ -38,14 +38,17 @@ public class setAvailibilityFragment extends Fragment implements RecyclerClickLi
     public void onViewCreated(@NonNull View view, Bundle savedInstance) {
         this.myView = view;
 
-        this.setUser((User)savedInstance.getSerializable("USER"));
-        this.setPotentialEvent((PotentialEvent)savedInstance.getSerializable("EVENT"));
+        if (savedInstance != null) {
+            this.setUser((User) (savedInstance.getSerializable("USER")));
+            this.setPotentialEvent((PotentialEvent) (savedInstance.getSerializable("EVENT")));
+        }
 
         initializeViews();
     }
 
     public void setPotentialEvent(PotentialEvent event) {
         this.event = event;
+        this.clickVals = new int[event.getEndHalfHour() - event.getStartHalfHour() + 1];
     }
 
     public void setUser(User user) {
@@ -54,8 +57,8 @@ public class setAvailibilityFragment extends Fragment implements RecyclerClickLi
 
     private void initializeViews() {
 
-        calendarView = (MaterialCalendarView) this.getView().findViewById(R.id.edit_calendarView);
-        availRecyclerView = (RecyclerView) this.getView().findViewById(R.id.availability_recycler);
+        calendarView = (MaterialCalendarView) this.myView.findViewById(R.id.edit_calendarView);
+        availRecyclerView = (RecyclerView) this.myView.findViewById(R.id.availability_recycler);
 
         List<CalendarDay> eventDays = new ArrayList<>();
 
@@ -103,7 +106,7 @@ public class setAvailibilityFragment extends Fragment implements RecyclerClickLi
     boolean firstClicked = false;
     int firstClickPos = -1;
     int clickVal = 0;
-    int[] clickVals = new int[event.getEndHalfHour() - event.getStartHalfHour() + 1];
+    int[] clickVals;
 
     private void clickedInEditMode(View view, int position) {
 

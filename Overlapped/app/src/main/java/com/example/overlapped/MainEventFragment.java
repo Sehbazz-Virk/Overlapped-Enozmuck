@@ -51,6 +51,7 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
     public void onViewCreated(@NonNull View view, Bundle savedInstance) {
         this.myView = view;
 
+
         initializeViews();
     }
 
@@ -171,6 +172,8 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
 
         eventRecyclerView.setHasFixedSize(false);
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        recyclerAdapter.setEventClickListener(this);
+
 
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,18 +203,18 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
                     .setMessage("COMING SOON!")
                     .setNegativeButton("Close", null)
                     .show();
+        } else {
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("USER", user);
+            bundle.putSerializable("EVENT", event);
+
+            this.getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.event_fragment_container, setAvailibilityFragment.class, bundle, "EditAvailFrag")
+                    .setReorderingAllowed(true)
+                    .addToBackStack(null)
+                    .commit();
+
         }
-
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("USER", user);
-        bundle.putSerializable("EVENT", event);
-
-        this.getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.event_fragment_container, setAvailibilityFragment.class, bundle, "EditAvailFrag")
-                .setReorderingAllowed(true)
-                .addToBackStack(null)
-                .commit();
-
-
     }
 }
