@@ -1,6 +1,7 @@
 package com.example.overlapped;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConcreteEvent extends Event {
@@ -8,7 +9,7 @@ public class ConcreteEvent extends Event {
     LocalDateTime startTime;
     LocalDateTime endTime;
 
-    public ConcreteEvent(LocalDateTime startTime, LocalDateTime endTime, User owner, List<User> users) {
+    public ConcreteEvent(LocalDateTime startTime, LocalDateTime endTime, User owner, ArrayList<User> users) {
         super(owner, users);
         this.startTime = startTime;
         this.endTime = endTime;

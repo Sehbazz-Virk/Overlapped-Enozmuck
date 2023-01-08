@@ -2,12 +2,13 @@ package com.example.overlapped;
 
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Event {
     String id;
     User owner;
-    List<User> users;
+    ArrayList<User> users;
 
     Database db = Database.getInstance();
 
