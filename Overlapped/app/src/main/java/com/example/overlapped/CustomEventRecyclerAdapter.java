@@ -26,7 +26,7 @@ public class CustomEventRecyclerAdapter extends RecyclerView.Adapter<CustomEvent
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        return null;
     }
 
     @Override

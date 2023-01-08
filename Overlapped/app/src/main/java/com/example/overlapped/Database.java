@@ -52,14 +52,15 @@ public class Database {
 
         month.put("2", dayMap);
 
-        dayMap.put("27",hourMap);
+        dayMap.put("27", hourMap);
 
-        hourMap.put("39",availMap);
+        hourMap.put("39", availMap);
 
         availMap.put("user1", 3);
 
         eventDetails.put("months", month);
-        events.document("wowow").set(eventDetails, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
+        //events.document("wowow").set(eventDetails, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
+    }
 
     public void getEventFields(String eventID){
         events.document(eventID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -110,24 +111,6 @@ public class Database {
 //                }
 //            }
 //        });
-
-
-    public void addEventTest(UUID ownerID) {
-
-        Map<String, Object> eventDetails = new HashMap<>();
-        eventDetails.put("owner", ownerID.toString());
-        events.document(UUID.randomUUID().toString()).set(eventDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Log.d("wow", "yay");
-                } else {
-                    Log.d("balls","balls");
-                }
-            }
-        });
-        //events.add(eventDetails);
-    }
 
 
     public void getEventTest() {

@@ -26,7 +26,7 @@ public class NavigationActivity extends AppCompatActivity {
     private void switchToEventActivity() {
         Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
-    }
+    
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.nav_fragment, CreateEventFragment.class, null, "CreateEventFrag")
