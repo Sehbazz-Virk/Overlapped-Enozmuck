@@ -93,18 +93,18 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
                     .setMessage("COMING SOON!")
                     .setNegativeButton("Close", null)
                     .show();
+        } else {
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("USER", user);
+            bundle.putSerializable("EVENT", event);
+
+            this.getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.event_fragment_container, setAvailibilityFragment.class, bundle, "EditAvailFrag")
+                    .setReorderingAllowed(true)
+                    .addToBackStack(null)
+                    .commit();
+
         }
-
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("USER", user);
-        bundle.putSerializable("EVENT", event);
-
-        this.getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.event_fragment_container, setAvailibilityFragment.class, bundle, "EditAvailFrag")
-                .setReorderingAllowed(true)
-                .addToBackStack(null)
-                .commit();
-
-
     }
 }
