@@ -32,7 +32,7 @@ public class PotentialEvent extends Event {
     // HashMap<int, HashMap> months
     HashMap<Integer, HashMap<Integer, HashMap<Integer, ArrayList<Pair<String, Integer>>>>> availabilities = new HashMap<>();
 
-    public PotentialEvent(User owner, List<User> users, LocalDateTime earliestTime, LocalDateTime latestTime, int duration, ArrayList<Pair<Integer, Integer>> days) {
+    public PotentialEvent(User owner, ArrayList<User> users, LocalDateTime earliestTime, LocalDateTime latestTime, int duration, ArrayList<Pair<Integer, Integer>> days) {
         super(owner, users);
         this.earliestTime = earliestTime;
         this.latestTime = latestTime;
