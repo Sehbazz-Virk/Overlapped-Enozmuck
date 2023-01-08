@@ -15,10 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class CustomEventRecyclerAdapter extends RecyclerView.Adapter<CustomEventRecyclerAdapter.ViewHolder>  {
+public class CustomEventRecyclerAdapter extends RecyclerView.Adapter<CustomEventRecyclerAdapter.ViewHolder> {
     Context context;
     ArrayList<Event> events; //TODO: Need to actually implement the event class.
-    //TODO: Add listener.
+    public RecyclerClickListener eventClickListener;
 
     public CustomEventRecyclerAdapter(Context context, ArrayList<Event> events) {
         this.context = context;
@@ -50,21 +50,33 @@ public class CustomEventRecyclerAdapter extends RecyclerView.Adapter<CustomEvent
         return this.events;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView monthText;
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
-            monthText = view.findViewById(R.id.month_text);
+            this.monthText = view.findViewById(R.id.month_text);
 //            dayNumberText = view.findViewById(R.id.day_number_text);
 //            nameOfEventText = view.findViewById(R.id.event_title);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (eventClickListener != null) {
+                eventClickListener.onItemClick(view, getAdapterPosition());
+            }
         }
 
         public TextView getMonthText() {
             return this.monthText;
         }
         
+    }
+
+    public void setEventClickListener(RecyclerClickListener listener) {
+        this.eventClickListener = listener;
     }
 
 }

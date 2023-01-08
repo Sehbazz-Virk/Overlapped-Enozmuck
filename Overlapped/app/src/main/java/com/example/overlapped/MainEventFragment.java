@@ -16,7 +16,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainEventFragment extends Fragment {
+public class MainEventFragment extends Fragment implements RecyclerClickListener{
     FloatingActionButton addEvent;
     CalendarView calendarToAdd;
     RecyclerView eventRecyclerView;
@@ -55,4 +55,9 @@ public class MainEventFragment extends Fragment {
 
     }
 
+
+    @Override
+    public void onItemClick(View view, int position) {
+        //TODO: Item stub for click event.
+    }
 }
