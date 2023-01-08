@@ -1,5 +1,6 @@
 package com.example.overlapped;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,7 +35,6 @@ public abstract class Event {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-
     public List<User> getUsers() {
         return users;
     }

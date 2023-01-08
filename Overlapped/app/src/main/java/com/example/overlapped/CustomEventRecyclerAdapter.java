@@ -36,14 +36,17 @@ public class CustomEventRecyclerAdapter extends RecyclerView.Adapter<CustomEvent
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String date = this.events.get(position).getTimes().toString();
-        holder.getMonthText().setText(date);
+        Integer monthValue = this.events.get(position).getTimes().getMonthValue();
+        Integer dayOfMonth = this.events.get(position).getTimes().getDayOfMonth();
+        Month month = Month.intToMonth(monthValue);
+        String date = month.toString() + "." + dayOfMonth.toString();
+        holder.monthText.setText(date);
         Log.i("Fix", "Please fix the OnBindViewHolder");
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return this.events.size();
     }
 
     private ArrayList<Event> getEvents() {
@@ -57,6 +60,8 @@ public class CustomEventRecyclerAdapter extends RecyclerView.Adapter<CustomEvent
             super(view);
             // Define click listener for the ViewHolder's View
             monthText = view.findViewById(R.id.month_text);
+//            dayNumberText = view.findViewById(R.id.day_number_text);
+//            nameOfEventText = view.findViewById(R.id.event_title);
         }
 
         public TextView getMonthText() {
