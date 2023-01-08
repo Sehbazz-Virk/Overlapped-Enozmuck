@@ -5,6 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -19,5 +25,9 @@ public class NavigationActivity extends AppCompatActivity {
     private void switchToEventActivity() {
         Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
+    }
+
+    private void switchToEventActivity() {
+
     }
 }
