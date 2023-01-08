@@ -24,15 +24,9 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
     private void switchToEventActivity() {
-        Intent intent = new Intent(this, NavigationActivity.class);
+        Intent intent = new Intent(this, EventActivity.class);
         startActivity(intent);
-    
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.nav_fragment, CreateEventFragment.class, null, "CreateEventFrag")
-                .setReorderingAllowed(true)
-                .addToBackStack(null)
-                .commit();
 
     }
 

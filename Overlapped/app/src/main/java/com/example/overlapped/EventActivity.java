@@ -12,7 +12,13 @@ public class EventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
+        setContentView(R.layout.event_activity);
         Log.i("Activity: ", "Arrived at EventActivity successfully!");
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.event_fragment_container, CreateEventFragment.class, null, "CreateEventFragment")
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
     }
 
     public void launchHomeFragment() {
