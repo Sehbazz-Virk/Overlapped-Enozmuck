@@ -124,7 +124,7 @@ public class PotentialEvent extends Event {
             public int compare(Object[] o1, Object[] o2) {
                 Integer i1 = (Integer) (o1[0]);
                 Integer i2 = (Integer) (o2[0]);
-                return i1.compareTo(i2);
+                return i2.compareTo(i1);
             }
         });
         return array;
