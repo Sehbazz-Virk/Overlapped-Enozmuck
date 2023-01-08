@@ -157,4 +157,7 @@ public class PotentialEvent extends Event {
 
     }
 
+    public HashMap<Integer, HashMap<Integer, HashMap<Integer, ArrayList<Pair<String, Integer>>>>> getAvailabilities() {
+        return availabilities;
+    }
 }
