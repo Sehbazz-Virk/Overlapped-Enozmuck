@@ -166,4 +166,19 @@ public class PotentialEvent extends Event {
 
     }
 
+    public LocalDate getEarliestDay() {
+        return earliestDay;
+    }
+
+    public void setEarliestDay(LocalDate earliestDay) {
+        this.earliestDay = earliestDay;
+    }
+
+    public LocalDate getLatestDay() {
+        return latestDay;
+    }
+
+    public void setLatestDay(LocalDate latestDay) {
+        this.latestDay = latestDay;
+    }
 }

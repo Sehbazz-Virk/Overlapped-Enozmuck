@@ -59,8 +59,8 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
         EventDecorator eventHighlighter = new EventDecorator(Color.RED, eventDays, getContext());
         calendarView.addDecorator(eventHighlighter);
 
-        Event MarcosDinner = new ConcreteEvent(new User(), new ArrayList<User>(), time);
-        Event SehbazzDinner = new ConcreteEvent(new User(), new ArrayList<User>(), time1);
+        Event MarcosDinner = new ConcreteEvent(time, time, new User(), new ArrayList<User>());
+        Event SehbazzDinner = new ConcreteEvent(time1, time1, new User(), new ArrayList<User>());
 
 
         ArrayList<Event> allEvents = new ArrayList<Event>();
