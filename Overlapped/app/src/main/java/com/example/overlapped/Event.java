@@ -16,7 +16,7 @@ public abstract class Event {
     public Event(){}
 
     // Constructor for creating a new Event that does not already exist
-    public Event(User owner, List<User> users){
+    public Event(User owner, ArrayList<User> users){
         this.owner = owner;
         this.users = users;
     }
@@ -40,7 +40,7 @@ public abstract class Event {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(ArrayList<User> users) {
         this.users = users;
     }
 
