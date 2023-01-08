@@ -39,9 +39,9 @@ public class MainEventFragment extends Fragment {
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        ArrayList<String> eventsList =  (ArrayList<String>)task.getResult().get("events");
+                        ArrayList<String> eventsList =  (ArrayList<String>)task.getResult().get("ConcreteEvents");
                         for (String event: eventsList) {
-                            db.getEventsCollectionRef().document(event).collection("months").get()
+                            db.getConcreteEventsCollectionRef().document(event).collection("months").get()
                                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
