@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         if (auth.getCurrentUser() != null) {
             launchApp();
         } else {
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
+
 
     }
 
