@@ -20,10 +20,12 @@
         android:id="@+id/event_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Event Title"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -31,67 +33,69 @@
         android:id="@+id/from_prompt3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="From: "
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/from_prompt4" />
+        app:layout_constraintBottom_toBottomOf="@+id/from_date_text"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/from_prompt4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
         android:text="To:"
         android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@+id/select_from_time"
-        tools:layout_editor_absoluteX="179dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/from_date_text"
+        app:layout_constraintStart_toEndOf="@+id/from_date_text" />
 
     <Button
         android:id="@+id/create_event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
         android:text="Create Event"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/from_prompt4" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/from_date_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="24dp"
         android:text="from time"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/from_prompt3"
-        app:layout_constraintTop_toTopOf="@+id/from_prompt3" />
+        app:layout_constraintBottom_toTopOf="@+id/create_event"
+        app:layout_constraintStart_toEndOf="@+id/from_prompt3" />
 
     <TextView
         android:id="@+id/to_date_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
+        android:layout_marginStart="8dp"
         android:text="to time"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/from_prompt3"
-        app:layout_constraintTop_toTopOf="@+id/from_prompt3" />
-
-    <Button
-        android:id="@+id/select_from_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select From Time"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="535dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/from_date_text"
+        app:layout_constraintStart_toEndOf="@+id/from_prompt4" />
 
     <Button
         android:id="@+id/select_end_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select End Time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.746"
-        app:layout_constraintStart_toEndOf="@+id/select_from_time"
+        app:layout_constraintStart_toStartOf="@+id/from_prompt4"
         app:layout_constraintTop_toTopOf="@+id/select_from_time" />
+
+    <Button
+        android:id="@+id/select_from_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Select From Time"
+        app:layout_constraintBottom_toTopOf="@+id/from_date_text"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

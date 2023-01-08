@@ -17,6 +17,7 @@ public class NavigationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
+        setContentView(R.layout.activity_navigation);
 
         //Insert the logic for navigation here if we have multiple activities:
         switchToEventActivity();
@@ -27,7 +28,12 @@ public class NavigationActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void switchToEventActivity() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.nav_fragment, CreateEventFragment.class, null, "CreateEventFrag")
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
 
     }
+
 }
