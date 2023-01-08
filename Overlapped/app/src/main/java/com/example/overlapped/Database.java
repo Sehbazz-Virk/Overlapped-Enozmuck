@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,11 @@ public class Database {
         return events;
     }
 
+    public void registerNewUser(String email) {
+        Map<String, List> userEvents = new HashMap<>();
+        userEvents.put("events",new ArrayList());
+        users.document(email).set(userEvents);
+    }
 
     public void addEventTest(UUID ownerID) {
 
