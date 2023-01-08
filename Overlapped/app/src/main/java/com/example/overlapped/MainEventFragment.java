@@ -3,6 +3,7 @@ package com.example.overlapped;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -114,59 +115,60 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (DocumentSnapshot event: task.getResult().getDocuments()) {
+                            event.getReference().collection("months").get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            for (DocumentSnapshot month: task.getResult().getDocuments()) {
+                                                month.getReference().collection("days").get()
+                                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                                int lastDay=0;
+                                                                ArrayList<Pair<Integer, Integer>> month_days= new ArrayList<>();
+                                                                for (DocumentSnapshot day: task.getResult().getDocuments()) {
+                                                                    month_days.add(Pair.create(Integer.valueOf(month.getId()),Integer.valueOf(day.getId())));
+                                                                    lastDay = Integer.valueOf(day.getId());
+                                                                }
+                                                                ArrayList<User> users = new ArrayList<>();
+                                                                for (String obj: (ArrayList<String>)event.get("users")) {
+                                                                    User user = new User();
+                                                                    user.setEmail(obj);
+                                                                    users.add(user);
+                                                                }
+                                                                int startHour,startMinute,endHour,endMinute;
+                                                                if ((Integer.valueOf(event.getLong("lowerHalfHour").intValue()) % 2) == 0) {
+                                                                    startHour = Integer.valueOf(event.getLong("lowerHalfHour").intValue())/2;
+                                                                    startMinute = 0;
+                                                                } else {
+                                                                    startHour = Integer.valueOf(event.getLong("lowerHalfHour").intValue())/2;
+                                                                    startMinute = 30;
+                                                                }
 
+                                                                if ((Integer.valueOf(event.getLong("upperHalfHour").intValue()) % 2) == 0) {
+                                                                    endHour = Integer.valueOf(event.getLong("upperHalfHour").intValue())/2;
+                                                                    endMinute = 0;
+                                                                } else {
+                                                                    endHour = Integer.valueOf(event.getLong("upperHalfHour").intValue())/2;
+                                                                    endMinute = 30;
+                                                                }
+                                                                User owner = new User();
+                                                                owner.setEmail(event.getString("owner"));
+                                                                PotentialEvent potentialEvent = new PotentialEvent(owner,
+                                                                        users,LocalDateTime.of(2023,Integer.valueOf(month.getId())+1,lastDay,
+                                                                        startHour,startMinute),LocalDateTime.of(2023,Integer.valueOf(month.getId())+1,lastDay,
+                                                                        endHour,endMinute),event.getLong("duration").intValue(),month_days);
+                                                                allEvents.add(potentialEvent);
+                                                                recyclerAdapter.notifyDataSetChanged();
+                                                            }
+                                                        });
+                                            }
+                                        }
+                                    });
+                        }
                     }
                 });
-//                .document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).get()
-//                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        ArrayList<String> eventsList =  (ArrayList<String>)task.getResult().get("ConcreteEvents");
-//                        for (String event: eventsList) {
-//                            db.getConcreteEventsCollectionRef().document(event).collection("months").get()
-//                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                                        @Override
-//                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                                            for (DocumentSnapshot month: task.getResult().getDocuments()) {
-//                                                month.getReference().collection("days").get()
-//                                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                                                            @Override
-//                                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                                                                List<CalendarDay> eventDays = new ArrayList<>();
-//                                                                for (DocumentSnapshot day: task.getResult().getDocuments()){
-//
-//                                                                    eventDays.add(CalendarDay.from(2023, Integer.valueOf(month.getId()), Integer.valueOf(month.getId())));
-//                                                                }
-//                                                                EventDecorator eventHighlighter = new EventDecorator(Color.RED, eventDays, getContext());
-//                                                                calendarView.addDecorator(eventHighlighter);
-//                                                            }
-//                                                        });
-//                                            }
-//                                        }
-//                                    });
-//                        }
-//                    }
-//                });
-
-//        LocalDateTime time = LocalDateTime.of(2023, 1, 18, 1, 1);
-//        LocalDateTime time1 = LocalDateTime.of(2023, 2, 11, 1, 1);
-
-//        CalendarDay a = CalendarDay.from(time.getYear(), time.getMonthValue(), time.getDayOfMonth());
-//        CalendarDay b = CalendarDay.from(time1.getYear(), time1.getMonthValue(), time1.getDayOfMonth());
-//
-//        eventDays.add(a);
-//        eventDays.add(b);
-
-
-
-//        Event MarcosDinner = new ConcreteEvent(time, time, new User(), new ArrayList<User>());
-//        Event SehbazzDinner = new ConcreteEvent(time1, time1, new User(), new ArrayList<User>());
-
-
-
-//        allEvents.add(MarcosDinner);
-//        allEvents.add(SehbazzDinner);
-
 
 
         eventRecyclerView.setHasFixedSize(false);
