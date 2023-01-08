@@ -36,14 +36,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Database db = new Database();
-        User user = new User();
-        user.setEmail("balls@cock.com");
-        ArrayList list = new ArrayList<>();
-        list.add(user);
-        ConcreteEvent conk = new ConcreteEvent(LocalDateTime.of(2023,1,12,5,30),
-                LocalDateTime.of(2023,1,12,7,30),user,list);
-        db.addConcreteEvent(conk);
+//        Database db = new Database();
+//        User user = new User();
+//        user.setEmail("gurbir.sandha@gmail.com");
+//        ArrayList list = new ArrayList<>();
+//        list.add(user);
+//        ConcreteEvent conk = new PotentialEvent(user,list,LocalDateTime.of(2023,1,10,19,0),
+//                LocalDateTime.of(2023,1,10,23,0),user,list);
+//        db.addConcreteEvent(conk);
         //db.getEventTest();
 
         if (auth.getCurrentUser() != null) {

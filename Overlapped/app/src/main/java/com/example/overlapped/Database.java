@@ -73,13 +73,15 @@ public class Database {
     public void addConcreteEvent(ConcreteEvent concreteEvent) {
         Map<String, Object> eventDetails = new HashMap<>();
         eventDetails.put("owner", concreteEvent.getOwner().getEmail());
-        eventDetails.put("users", concreteEvent.getUsers());
+        eventDetails.put("users", concreteEvent.getUsersEmails());
         eventDetails.put("startMonth", concreteEvent.getStartTime().getMonthValue());
         eventDetails.put("startDay", concreteEvent.getStartTime().getDayOfMonth());
-        eventDetails.put("startHalfHour", Double.valueOf((double)concreteEvent.getStartTime().getHour())+(Double.valueOf((double)concreteEvent.getStartTime().getMinute()/60.0)));
+        eventDetails.put("startHalfHour", (Double.valueOf((double)concreteEvent.getStartTime().getHour())+(Double.valueOf((double)concreteEvent.getStartTime().getMinute()/60.0)))*2);
         eventDetails.put("endMonth", concreteEvent.getEndTime().getMonthValue());
         eventDetails.put("endDay", concreteEvent.getEndTime().getDayOfMonth());
-        eventDetails.put("endHalfHour", Double.valueOf((double)concreteEvent.getEndTime().getHour())+(Double.valueOf((double)concreteEvent.getEndTime().getMinute()/60.0)));
+        eventDetails.put("endHalfHour", (Double.valueOf((double)concreteEvent.getEndTime().getHour())+(Double.valueOf((double)concreteEvent.getEndTime().getMinute()/60.0)))*2);
+        concreteEvent.setId(UUID.randomUUID().toString());
+        concreteEvents.document(concreteEvent.getId()).set(eventDetails);
 //        Map<String, Object> eventDetails = new HashMap<>();
 //        Map<String, Map> month = new HashMap<>();
 //        Map<String, Map> dayMap = new HashMap<>();
