@@ -26,10 +26,12 @@ public class Database {
 
     private FirebaseFirestore db;
     private CollectionReference events;
+    private CollectionReference users;
 
     public Database() {
         db = FirebaseFirestore.getInstance();
         events = db.collection("Events");
+        users = db.collection("users");
 
     }
 
@@ -38,6 +40,18 @@ public class Database {
             db_ = new Database();
         }
         return db_;
+    }
+
+    public FirebaseFirestore getFirebaseFirestoreRef(){
+        return db;
+    }
+
+    public CollectionReference getUsersCollectionRef() {
+        return users;
+    }
+
+    public CollectionReference getEventsCollectionRef() {
+        return events;
     }
 
 
@@ -114,28 +128,34 @@ public class Database {
 
 
     public void getEventTest() {
-//        events.document("test").collection("months").document("0")
-//                .collection("days").document("23").collection("halfhours")
-//                .document("32").collection("users").whereEqualTo("rank",2).get()
+        events.document("test").collection("months").document("0")
+                .collection("days").document("23").collection("halfhours")
+                .document("32").collection("users").whereEqualTo("rank",2).get()
 //                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 //                    @Override
 //                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 //                        Log.d("wow","yay");
 //                    }
 //                });
-        db.collectionGroup("months").whereEqualTo("balls","hello").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        Log.d("wow","yay");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("ass", "cheeks");
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        task.getResult().getDocuments().get(0);
                     }
                 });
+//        db.collectionGroup("months").whereEqualTo("balls","hello").get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        Log.d("wow","yay");
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.d("ass", "cheeks");
+//                    }
+//                });
 
     }
 

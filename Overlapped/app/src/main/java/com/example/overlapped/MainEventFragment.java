@@ -21,11 +21,15 @@ public class MainEventFragment extends Fragment {
     CalendarView calendarToAdd;
     RecyclerView eventRecyclerView;
     MaterialCalendarView calendarView;
+    Database db;
 
     public MainEventFragment() {
         super(R.layout.home_fragment);
 
-//        calendarView = (MaterialCalendarView) getView().findViewById(R.id.calendarView);
+        db = Database.getInstance();
+        calendarView = (MaterialCalendarView) this.getView().findViewById(R.id.calendarView);
+
+        db.getUsersCollectionRef()
 //
 //        List<CalendarDay> eventDays = new ArrayList<>();
 //

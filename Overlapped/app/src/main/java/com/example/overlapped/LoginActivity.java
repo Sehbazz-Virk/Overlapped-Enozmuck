@@ -29,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Database db = new Database();
+        db.getEventTest();
 
         if (auth.getCurrentUser() != null) {
             launchApp();
