@@ -55,16 +55,23 @@ public class Database {
         });
     }
 
-    public List<DocumentSnapshot> getEventMonths(String eventID){
-        events.document(eventID).collection("months").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    return task.getResult().getDocuments();
-                }
-            }
-        }
-    }
+//    public List<DocumentSnapshot> getEventMonths(String eventID){
+//
+//        final List<DocumentSnapshot> documents; //TODO: THIS MAY NOT BE ASSIGNED
+//
+//        events.document(eventID).collection("months").add
+//
+//                .get().add
+//
+//                addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    documents = task.getResult().getDocuments();
+//                }
+//            }
+//        }
+//    }
 //            @Override
 //            public void onComplete(@NonNull Task<> task) {
 //                if (task.isSuccessful()) {
@@ -79,7 +86,6 @@ public class Database {
 //                }
 //            }
 //        });
-    }
 
 
     public void addEventTest(UUID ownerID) {

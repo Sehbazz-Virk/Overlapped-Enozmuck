@@ -25,6 +25,7 @@ public abstract class Event {
         this.id = id;
 
         // fetch info from db
+
     }
 
     public String getId() {
