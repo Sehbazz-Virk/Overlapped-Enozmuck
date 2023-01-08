@@ -19,5 +19,6 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
     private void switchToEventActivity() {
+
     }
 }
