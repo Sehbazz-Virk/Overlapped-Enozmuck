@@ -143,10 +143,7 @@ public class PotentialEvent extends Event {
         return availabilities.get(month).get(day).get(halfHour);
 
     }
-
-    public LocalDateTime getEarliestTime() {
-        
-    }
+    
 
     public void addAvailability(User user, int month, int day, int halfHour, int val) {
 
