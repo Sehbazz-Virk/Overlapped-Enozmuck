@@ -42,16 +42,16 @@ public class CustomEventRecyclerAdapter extends RecyclerView.Adapter<CustomEvent
         if (currentEvent.getType().equals("ConcreteEvent")) {
             text.setText(((ConcreteEvent)currentEvent).getStartTime().toString() + " " +
                     ((ConcreteEvent)currentEvent).getEndTime().toString());
+
         } else if (currentEvent.getType().equals("PotentialEvent")) {
-            text.setText(((PotentialEvent)currentEvent).ge);
+            text.setText("Needs to be implemented");
         }
 
-        holder.getMonthText().setText(date);
-        Integer monthValue = this.events.get(position).getTimes().getMonthValue();
-        Integer dayOfMonth = this.events.get(position).getTimes().getDayOfMonth();
-        Month month = Month.intToMonth(monthValue);
-        String date = month.toString() + "." + dayOfMonth.toString();
-        holder.monthText.setText(date);
+//        Integer monthValue = ().getMonthValue();
+//        Integer dayOfMonth = this.events.get(position).getTimes().getDayOfMonth();
+//        Month month = Month.intToMonth(monthValue);
+//        String date = month.toString() + "." + dayOfMonth.toString();
+//        holder.monthText.setText(date);
         Log.i("Fix", "Please fix the OnBindViewHolder");
     }
 

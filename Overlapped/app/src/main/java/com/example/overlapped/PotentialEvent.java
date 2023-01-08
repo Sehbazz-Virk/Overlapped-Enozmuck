@@ -22,6 +22,9 @@ import java.util.Set;
 
 public class PotentialEvent extends Event {
 
+    //TODO: once we have the host select the window, we can populate the days below to track the range of the event duration.
+    private LocalDate earliestDay;
+    private LocalDate latestDay;
     private LocalDateTime earliestTime;
     private LocalDateTime latestTime;
     private int duration;
