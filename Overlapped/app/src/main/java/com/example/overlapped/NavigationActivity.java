@@ -3,8 +3,11 @@ package com.example.overlapped;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -12,12 +15,9 @@ public class NavigationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
 
-        //Insert the logic for navigation here if we have multiple activities:
-        switchToEventActivity();
+        Log.i("email", FirebaseAuth.getInstance().getCurrentUser().getEmail());
     }
 
     private void switchToEventActivity() {
-        Intent intent = new Intent(this, NavigationActivity.class);
-        startActivity(intent);
     }
 }
