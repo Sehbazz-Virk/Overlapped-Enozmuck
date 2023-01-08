@@ -1,17 +1,23 @@
 package com.example.overlapped;
 
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import java.util.Calendar;
 
 public class CreateEventFragment extends Fragment {
 
     EditText eventTitleEntry;
     Button selectFromTime, selectEndTime, createEvent;
+    TextView fromTimeText, toTimeText;
     View myView;
 
 
@@ -36,7 +42,46 @@ public class CreateEventFragment extends Fragment {
         selectEndTime = myView.findViewById(R.id.select_end_time);
         createEvent = myView.findViewById(R.id.create_event);
 
+        fromTimeText = myView.findViewById(R.id.from_date_text);
+        toTimeText = myView.findViewById(R.id.to_date_text);
 
+        selectFromTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar cldr = Calendar.getInstance();
+                int hour = cldr.get(Calendar.HOUR_OF_DAY);
+                int minutes = cldr.get(Calendar.MINUTE);
+                // time picker dialog
+                TimePickerDialog picker = new TimePickerDialog(getContext(),
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                                fromTimeText.setText(sHour + ":" + sMinute);
+                            }
+                        }, hour, minutes, true);
+                picker.show();
+            }
+        });
+
+        selectEndTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar cldr = Calendar.getInstance();
+                int hour = cldr.get(Calendar.HOUR_OF_DAY);
+                int minutes = cldr.get(Calendar.MINUTE);
+                // time picker dialog
+                TimePickerDialog picker = new TimePickerDialog(getContext(),
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                                toTimeText.setText(sHour + ":" + sMinute);
+                            }
+                        }, hour, minutes, true);
+                picker.show();
+            }
+        });
+
+        // add event to database
 
     }
 
