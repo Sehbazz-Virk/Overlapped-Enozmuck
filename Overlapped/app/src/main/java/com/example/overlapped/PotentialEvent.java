@@ -22,6 +22,9 @@ import java.util.Set;
 
 public class PotentialEvent extends Event {
 
+    //TODO: once we have the host select the window, we can populate the days below to track the range of the event duration.
+    private LocalDate earliestDay;
+    private LocalDate latestDay;
     private LocalDateTime earliestTime;
     private LocalDateTime latestTime;
     private int duration;
@@ -32,7 +35,7 @@ public class PotentialEvent extends Event {
     // HashMap<int, HashMap> months
     HashMap<Integer, HashMap<Integer, HashMap<Integer, ArrayList<Pair<String, Integer>>>>> availabilities = new HashMap<>();
 
-    public PotentialEvent(User owner, List<User> users, LocalDateTime earliestTime, LocalDateTime latestTime, int duration, ArrayList<Pair<Integer, Integer>> days) {
+    public PotentialEvent(User owner, ArrayList<User> users, LocalDateTime earliestTime, LocalDateTime latestTime, int duration, ArrayList<Pair<Integer, Integer>> days) {
         super(owner, users);
         this.earliestTime = earliestTime;
         this.latestTime = latestTime;
@@ -117,6 +120,11 @@ public class PotentialEvent extends Event {
 
     }
 
+    @Override
+    public String getType() {
+        return "PotentialEvent";
+    }
+
     private Integer[][] sortByFirstIndex(Integer[][] array){
         // sort the 4-element array of "tuples" by the first element
         Arrays.sort(array, new Comparator<Object[]>() {
@@ -134,6 +142,10 @@ public class PotentialEvent extends Event {
 
         return availabilities.get(month).get(day).get(halfHour);
 
+    }
+
+    public LocalDateTime getEarliestTime() {
+        
     }
 
     public void addAvailability(User user, int month, int day, int halfHour, int val) {
