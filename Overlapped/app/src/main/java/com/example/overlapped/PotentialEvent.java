@@ -5,6 +5,7 @@ import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.HashMap;
 import java.util.ListIterator;
 import java.util.Set;
 
-public class PotentialEvent extends Event {
+public class PotentialEvent extends Event implements Serializable {
 
     //TODO: once we have the host select the window, we can populate the days below to track the range of the event duration.
     private LocalDate earliestDay;
@@ -179,5 +180,19 @@ public class PotentialEvent extends Event {
 
     public void setLatestDay(LocalDate latestDay) {
         this.latestDay = latestDay;
+    }
+    public HashMap<Integer, HashMap<Integer, HashMap<Integer, ArrayList<Pair<String, Integer>>>>> getAvailabilities() {
+        return availabilities;
+    }
+
+    public int getStartHalfHour() {
+
+        return earliestTime.getHour() * 2 + earliestTime.getMinute() / 30;
+    }
+
+    public int getEndHalfHour() {
+
+        return latestTime.getHour() * 2 + latestTime.getMinute() / 30;
+
     }
 }
