@@ -2,17 +2,24 @@ package com.example.overlapped;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CalendarView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+
+import org.checkerframework.checker.units.qual.C;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -37,6 +44,7 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
 
         calendarView = (MaterialCalendarView) this.getView().findViewById(R.id.calendarView);
         eventRecyclerView = (RecyclerView) this.getView().findViewById(R.id.event_recycler);
+        addEvent = (FloatingActionButton) this.getView().findViewById(R.id.add_event_button);
 
         List<CalendarDay> eventDays = new ArrayList<>();
 
@@ -65,13 +73,18 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
         eventRecyclerView.setHasFixedSize(false);
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
+        addEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventActivity.getInstance().launchCreateEvent();
+            }
+        });
+
     }
 
     public MainEventFragment() {
         super(R.layout.home_fragment);
-
     }
-
 
     @Override
     public void onItemClick(View view, int position) {
