@@ -14,5 +14,9 @@ public abstract class PotentialEvent extends Event {
 
     }
 
+    @Override
+    public String getType() {
+        return "PotentialEvent";
+    }
 
 }

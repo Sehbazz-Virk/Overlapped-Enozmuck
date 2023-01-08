@@ -59,4 +59,6 @@ public abstract class Event {
     public void setTimes(LocalDateTime times) {
         this.times = times;
     }
+
+    public abstract String getType();
 }
