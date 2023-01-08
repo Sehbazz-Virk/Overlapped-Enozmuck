@@ -5,6 +5,7 @@ import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,9 +23,44 @@ public class PotentialEvent extends Event {
     private LocalDateTime latestTime;
     private int duration;
 
+    ArrayList<Pair<Integer, Integer>> days;
+
     // months -> days -> half hours -> List[] tuples
     // HashMap<int, HashMap> months
-    HashMap<Integer, HashMap<Integer, HashMap<Integer, ArrayList<Pair<String, Integer>>>>> availabilities;
+    HashMap<Integer, HashMap<Integer, HashMap<Integer, ArrayList<Pair<String, Integer>>>>> availabilities = new HashMap<>();
+
+    public PotentialEvent(User owner, List<User> users, LocalDateTime earliestTime, LocalDateTime latestTime, int duration, ArrayList<Pair<Integer, Integer>> days) {
+        super(owner, users);
+        this.earliestTime = earliestTime;
+        this.latestTime = latestTime;
+        this.duration = duration;
+        this.days = days;
+
+        int startHalfHour = earliestTime.getHour() * 2 + earliestTime.getMinute() / 30;
+        int endHalfHour = latestTime.getHour() * 2 + latestTime.getMinute() / 30;
+
+
+        for (int i = 0; i < days.size(); i++) {
+            int month = days.get(i).first;
+            int day = days.get(i).second;
+            if (!availabilities.containsKey(month)) {
+                availabilities.put(month, new HashMap<>());
+            }
+
+            if (!availabilities.get(month).containsKey(day)) {
+                availabilities.get(month).put(day, new HashMap<>());
+            } else {
+                continue;
+            }
+
+            HashMap<Integer, ArrayList<Pair<String, Integer>>> avails = new HashMap<>();
+
+            for (int j = startHalfHour; j <= endHalfHour; j++) {
+                avails.put(j, new ArrayList<>());
+            }
+
+        }
+    }
 
     public void findTime() {
 
