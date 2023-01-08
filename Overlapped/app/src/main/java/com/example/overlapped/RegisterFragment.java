@@ -21,6 +21,7 @@ public class RegisterFragment extends Fragment {
     EditText emailEntry;
     EditText passwordEntry;
     View myView;
+    Database db;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -33,6 +34,7 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstance) {
         this.myView = view;
 
+        db = Database.getInstance();
         initializeViews();
     }
 
@@ -73,6 +75,7 @@ public class RegisterFragment extends Fragment {
                 Log.i("AUTH", "SIGN UP SUCCEEDED");
                 passwordEntry.setError(null);
                 emailEntry.setError(null);
+                db.registerNewUser(email);
                 ((LoginActivity)getActivity()).launchApp();
             }
         }).addOnFailureListener(new OnFailureListener() {

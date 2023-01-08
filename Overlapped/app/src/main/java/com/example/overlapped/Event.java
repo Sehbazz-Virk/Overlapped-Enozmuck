@@ -39,6 +39,14 @@ public abstract class Event implements Serializable {
         return users;
     }
 
+    public List<String> getUsersEmails() {
+        List<String> list = new ArrayList<>();
+        for (User u: getUsers()){
+            list.add(u.getEmail());
+        }
+        return list;
+    }
+
     public void setUsers(ArrayList<User> users) {
         this.users = users;
     }

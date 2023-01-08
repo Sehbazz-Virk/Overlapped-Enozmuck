@@ -1,10 +1,12 @@
 package com.example.overlapped;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -14,6 +16,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.checkerframework.checker.units.qual.C;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class LoginActivity extends AppCompatActivity {
@@ -24,11 +30,21 @@ public class LoginActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+//        Database db = new Database();
+//        User user = new User();
+//        user.setEmail("gurbir.sandha@gmail.com");
+//        ArrayList list = new ArrayList<>();
+//        list.add(user);
+//        ConcreteEvent conk = new PotentialEvent(user,list,LocalDateTime.of(2023,1,10,19,0),
+//                LocalDateTime.of(2023,1,10,23,0),user,list);
+//        db.addConcreteEvent(conk);
+        //db.getEventTest();
 
         if (auth.getCurrentUser() != null) {
             launchApp();
