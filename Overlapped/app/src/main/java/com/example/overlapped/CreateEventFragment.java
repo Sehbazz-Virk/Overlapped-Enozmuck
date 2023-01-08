@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 public class CreateEventFragment extends Fragment {
 
     EditText eventTitleEntry;
-    Button selectDateRange, selectFromTime, selectEndTime, createEvent;
+    Button selectFromTime, selectEndTime, createEvent;
     View myView;
 
 
@@ -30,17 +30,12 @@ public class CreateEventFragment extends Fragment {
 
     public void initializeViews() {
         eventTitleEntry = myView.findViewById(R.id.event_title);
-        selectDateRange = myView.findViewById(R.id.date_range_button);
+        // add calendar Karan
         selectFromTime = myView.findViewById(R.id.select_from_time);
         selectEndTime = myView.findViewById(R.id.select_end_time);
         createEvent = myView.findViewById(R.id.create_event);
 
-        selectDateRange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // launch alert dialog for
-            }
-        });
+
 
     }
 
