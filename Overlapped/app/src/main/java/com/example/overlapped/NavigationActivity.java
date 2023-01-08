@@ -26,8 +26,6 @@ public class NavigationActivity extends AppCompatActivity {
     private void switchToEventActivity() {
         Intent intent = new Intent(this, EventActivity.class);
         startActivity(intent);
-
-
     }
 
 }

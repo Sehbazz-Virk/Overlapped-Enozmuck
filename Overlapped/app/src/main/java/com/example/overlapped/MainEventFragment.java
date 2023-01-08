@@ -1,12 +1,18 @@
 package com.example.overlapped;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CalendarView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,11 +20,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+
+import org.checkerframework.checker.units.qual.C;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -29,7 +39,11 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
     CalendarView calendarToAdd;
     RecyclerView eventRecyclerView;
     MaterialCalendarView calendarView;
+
     Database db;
+
+    CustomEventRecyclerAdapter recyclerAdapter;
+
     private View myView;
 
     @Override
@@ -44,6 +58,7 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
 
         calendarView = (MaterialCalendarView) this.getView().findViewById(R.id.calendarView);
         eventRecyclerView = (RecyclerView) this.getView().findViewById(R.id.event_recycler);
+        addEvent = (FloatingActionButton) this.getView().findViewById(R.id.add_event_button);
 
         ArrayList<Event> allEvents = new ArrayList<Event>();
         CustomEventRecyclerAdapter recyclerAdapter = new CustomEventRecyclerAdapter(this.getActivity(), allEvents);
@@ -153,37 +168,50 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
 //        allEvents.add(SehbazzDinner);
 
 
+
         eventRecyclerView.setHasFixedSize(false);
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+
+        addEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventActivity.getInstance().launchCreateEvent();
+            }
+        });
 
     }
 
     public MainEventFragment() {
         super(R.layout.home_fragment);
 
-
-        //calendarView = (MaterialCalendarView) this.getView().findViewById(R.id.calendarView);
-
-
-
-//        List<CalendarDay> eventDays = new ArrayList<>();
-//
-//        CalendarDay a = CalendarDay.from(2023, 01, 8);
-//        CalendarDay b = CalendarDay.from(2023, 01, 10);
-//        CalendarDay c = CalendarDay.from(2023, 01, 23);
-//
-//        eventDays.add(a);
-//        eventDays.add(b);
-//        eventDays.add(c);
-//
-//        EventDecorator eventHighlighter = new EventDecorator(Color.RED, eventDays, getContext());
-//        calendarView.addDecorator(eventHighlighter);
-
     }
-
 
     @Override
     public void onItemClick(View view, int position) {
-        //TODO: Item stub for click event.
+
+        User user = new User();
+        user.setEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+
+        Event event = recyclerAdapter.events.get(position);
+
+        if (event instanceof ConcreteEvent) {
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Event Details")
+                    .setMessage("COMING SOON!")
+                    .setNegativeButton("Close", null)
+                    .show();
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("USER", user);
+        bundle.putSerializable("EVENT", event);
+
+        this.getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.event_fragment_container, setAvailibilityFragment.class, bundle, "EditAvailFrag")
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
+
+
     }
 }

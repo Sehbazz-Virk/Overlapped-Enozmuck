@@ -1,6 +1,8 @@
 package com.example.overlapped;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable  {
     int uuid;
     private Event[] events;
     private String email;

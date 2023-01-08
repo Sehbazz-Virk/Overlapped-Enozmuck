@@ -1,16 +1,15 @@
 package com.example.overlapped;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Event {
+public abstract class Event implements Serializable {
     String id;
     User owner;
     ArrayList<User> users;
-
-    Database db = Database.getInstance();
 
     // Base constructor
     public Event(){}
