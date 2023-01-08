@@ -15,7 +15,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         db = Database.getInstance();
-        db.addEventTest(UUID.randomUUID());
+        //db.addEventTest(UUID.randomUUID());
+        db.getEventTest();
 
     }
 }
