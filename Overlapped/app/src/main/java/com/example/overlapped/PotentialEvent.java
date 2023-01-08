@@ -144,6 +144,7 @@ public class PotentialEvent extends Event implements Serializable {
         return availabilities.get(month).get(day).get(halfHour);
 
     }
+    
 
     public void addAvailability(User user, int month, int day, int halfHour, int val) {
 
