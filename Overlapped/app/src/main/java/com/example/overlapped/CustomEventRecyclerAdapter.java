@@ -3,6 +3,7 @@ package com.example.overlapped;
 
 import android.app.usage.UsageEvents;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -28,19 +29,20 @@ public class CustomEventRecyclerAdapter extends RecyclerView.Adapter<CustomEvent
 
     }
 
-//    @Override
-//    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-////        holder.getMonthText().setText(getEvents().get(position)//TODO Add the getText from the event here);
-//    }
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+//        holder.getMonthText().setText(getEvents().get(position)//TODO Add the getText from the event here);
+        Log.i("Fix", "Please fix the OnBindViewHolder");
+    }
 
     @Override
     public int getItemCount() {
         return 0;
     }
 
-//    private ArrayList<Event> getEvents() {
-//        return this.events;
-//    }
+    private ArrayList<Event> getEvents() {
+        return this.events;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView monthText;
