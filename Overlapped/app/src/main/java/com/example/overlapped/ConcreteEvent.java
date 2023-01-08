@@ -5,10 +5,6 @@ import java.util.List;
 
 public class ConcreteEvent extends Event {
 
-
-    @Override
-    public String getType() {
-        return "ConcreteEvent";
     LocalDateTime startTime;
     LocalDateTime endTime;
 
@@ -32,5 +28,10 @@ public class ConcreteEvent extends Event {
 
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
+    }
+
+    @Override
+    public String getType() {
+        return "ConcreteEvent";
     }
 }

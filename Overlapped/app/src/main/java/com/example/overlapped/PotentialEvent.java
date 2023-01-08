@@ -120,6 +120,8 @@ public class PotentialEvent extends Event {
     @Override
     public String getType() {
         return "PotentialEvent";
+    }
+
     private Integer[][] sortByFirstIndex(Integer[][] array){
         // sort the 4-element array of "tuples" by the first element
         Arrays.sort(array, new Comparator<Object[]>() {
@@ -137,6 +139,10 @@ public class PotentialEvent extends Event {
 
         return availabilities.get(month).get(day).get(halfHour);
 
+    }
+
+    public LocalDateTime getEarliestTime() {
+        
     }
 
     public void addAvailability(User user, int month, int day, int halfHour, int val) {
