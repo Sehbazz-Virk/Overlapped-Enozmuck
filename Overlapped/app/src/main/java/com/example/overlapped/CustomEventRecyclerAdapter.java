@@ -53,7 +53,7 @@ public class CustomEventRecyclerAdapter extends RecyclerView.Adapter<CustomEvent
             super(view);
             // Define click listener for the ViewHolder's View
             monthText = view.findViewById(R.id.month_text);
-            dayNumberText = view.findViewById(R.id.day_number_text);
+//            dayNumberText = view.findViewById(R.id.day_number_text);
             nameOfEventText = view.findViewById(R.id.event_title);
         }
 

@@ -21,24 +21,37 @@ public class MainEventFragment extends Fragment {
     CalendarView calendarToAdd;
     RecyclerView eventRecyclerView;
     MaterialCalendarView calendarView;
+    private View myView;
+
+    @Override
+    @NonNull
+    public void onViewCreated(@NonNull View view, Bundle savedInstance) {
+        this.myView = view;
+
+        initializeViews();
+    }
+
+    private void initializeViews() {
+
+        calendarView = (MaterialCalendarView) this.getView().findViewById(R.id.calendarView);
+
+        List<CalendarDay> eventDays = new ArrayList<>();
+
+        CalendarDay a = CalendarDay.from(2023, 01, 8);
+        CalendarDay b = CalendarDay.from(2023, 01, 10);
+        CalendarDay c = CalendarDay.from(2023, 01, 23);
+
+        eventDays.add(a);
+        eventDays.add(b);
+        eventDays.add(c);
+
+        EventDecorator eventHighlighter = new EventDecorator(Color.RED, eventDays, getContext());
+        calendarView.addDecorator(eventHighlighter);
+
+    }
 
     public MainEventFragment() {
         super(R.layout.home_fragment);
-
-//        calendarView = (MaterialCalendarView) getView().findViewById(R.id.calendarView);
-//
-//        List<CalendarDay> eventDays = new ArrayList<>();
-//
-//        CalendarDay a = CalendarDay.from(2023, 01, 8);
-//        CalendarDay b = CalendarDay.from(2023, 01, 10);
-//        CalendarDay c = CalendarDay.from(2023, 01, 23);
-//
-//        eventDays.add(a);
-//        eventDays.add(b);
-//        eventDays.add(c);
-//
-//        EventDecorator eventHighlighter = new EventDecorator(Color.RED, eventDays, getContext());
-//        calendarView.addDecorator(eventHighlighter);
 
     }
 
