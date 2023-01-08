@@ -17,6 +17,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class setAvailibilityFragment extends Fragment implements RecyclerClickListener {
 
@@ -79,7 +80,11 @@ public class setAvailibilityFragment extends Fragment implements RecyclerClickLi
 
     @Override
     public void onItemClick(View view, int position) {
+        if (Objects.equals(mode, "view")) {
 
+        } else {
+
+        }
     }
 
 
