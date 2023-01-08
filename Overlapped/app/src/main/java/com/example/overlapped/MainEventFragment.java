@@ -21,12 +21,10 @@ public class MainEventFragment extends Fragment {
     CalendarView calendarToAdd;
     RecyclerView eventRecyclerView;
     MaterialCalendarView calendarView;
-    View myView;
-
 
     public MainEventFragment() {
         super(R.layout.home_fragment);
-//
+
 //        calendarView = (MaterialCalendarView) getView().findViewById(R.id.calendarView);
 //
 //        List<CalendarDay> eventDays = new ArrayList<>();
@@ -42,12 +40,6 @@ public class MainEventFragment extends Fragment {
 //        EventDecorator eventHighlighter = new EventDecorator(Color.RED, eventDays, getContext());
 //        calendarView.addDecorator(eventHighlighter);
 
-    }
-
-    @Override
-    @NonNull
-    public void onViewCreated(@NonNull View view, Bundle savedInstance) {
-        this.myView = view;
     }
 
 }
