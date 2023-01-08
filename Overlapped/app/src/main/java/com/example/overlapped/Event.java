@@ -1,10 +1,27 @@
+package com.example.overlapped;
+
+import java.time.LocalDateTime;
+
 public abstract class Event {
     String id;
     User owner;
     User[] users;
     LocalDateTime times;
 
-    public Event(id){
+    Database db = new Database().getInstance();
+
+    // Base constructor
+    public Event(){}
+
+    // Constructor for creating a new Event that does not already exist
+    public Event(User owner, User[] users, LocalDateTime times){
+        this.owner = owner;
+        this.users = users;
+        this.times = times;
+    }
+
+    // Constructor for associating this Event object to an event that is in the database
+    public Event(String id){
         this.id = id;
 
         // fetch info from db
