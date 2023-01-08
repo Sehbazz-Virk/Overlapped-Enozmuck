@@ -183,4 +183,15 @@ public class PotentialEvent extends Event {
     public HashMap<Integer, HashMap<Integer, HashMap<Integer, ArrayList<Pair<String, Integer>>>>> getAvailabilities() {
         return availabilities;
     }
+
+    public int getStartHalfHour() {
+
+        return earliestTime.getHour() * 2 + earliestTime.getMinute() / 30;
+    }
+
+    public int getEndHalfHour() {
+
+        return latestTime.getHour() * 2 + latestTime.getMinute() / 30;
+
+    }
 }
