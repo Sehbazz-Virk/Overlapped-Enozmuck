@@ -144,10 +144,6 @@ public class PotentialEvent extends Event {
 
     }
 
-    public LocalDateTime getEarliestTime() {
-        
-    }
-
     public void addAvailability(User user, int month, int day, int halfHour, int val) {
 
         Pair<String, Integer> userAvail = new Pair(user.getEmail(), val);
@@ -169,4 +165,19 @@ public class PotentialEvent extends Event {
 
     }
 
+    public LocalDate getEarliestDay() {
+        return earliestDay;
+    }
+
+    public void setEarliestDay(LocalDate earliestDay) {
+        this.earliestDay = earliestDay;
+    }
+
+    public LocalDate getLatestDay() {
+        return latestDay;
+    }
+
+    public void setLatestDay(LocalDate latestDay) {
+        this.latestDay = latestDay;
+    }
 }
