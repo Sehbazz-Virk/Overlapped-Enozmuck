@@ -38,6 +38,9 @@ public class setAvailibilityFragment extends Fragment implements RecyclerClickLi
     public void onViewCreated(@NonNull View view, Bundle savedInstance) {
         this.myView = view;
 
+        this.setUser((User)savedInstance.getSerializable("USER"));
+        this.setPotentialEvent((PotentialEvent)savedInstance.getSerializable("EVENT"));
+
         initializeViews();
     }
 

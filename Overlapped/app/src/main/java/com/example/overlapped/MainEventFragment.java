@@ -1,5 +1,6 @@
 package com.example.overlapped;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
@@ -23,6 +25,7 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
     CalendarView calendarToAdd;
     RecyclerView eventRecyclerView;
     MaterialCalendarView calendarView;
+    CustomEventRecyclerAdapter recyclerAdapter;
     private View myView;
 
     @Override
@@ -60,7 +63,7 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
         allEvents.add(MarcosDinner);
         allEvents.add(SehbazzDinner);
 
-        CustomEventRecyclerAdapter recyclerAdapter = new CustomEventRecyclerAdapter(this.getActivity(), allEvents);
+        recyclerAdapter = new CustomEventRecyclerAdapter(this.getActivity(), allEvents);
         eventRecyclerView.setAdapter(recyclerAdapter);
         eventRecyclerView.setHasFixedSize(false);
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
@@ -75,6 +78,30 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
 
     @Override
     public void onItemClick(View view, int position) {
-        //TODO: Item stub for click event.
+
+        User user = new User();
+        user.setEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+
+        Event event = recyclerAdapter.events.get(position);
+
+        if (event instanceof ConcreteEvent) {
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Event Details")
+                    .setMessage("COMING SOON!")
+                    .setNegativeButton("Close", null)
+                    .show();
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("USER", user);
+        bundle.putSerializable("EVENT", event);
+
+        this.getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.event_fragment_container, setAvailibilityFragment.class, bundle, "EditAvailFrag")
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
+
+
     }
 }
