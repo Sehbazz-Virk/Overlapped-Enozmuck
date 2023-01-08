@@ -56,8 +56,8 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
         eventDays.add(a);
         eventDays.add(b);
 
-        EventDecorator eventHighlighter = new EventDecorator(Color.RED, eventDays, getContext());
-        calendarView.addDecorator(eventHighlighter);
+//        EventDecorator eventHighlighter = new EventDecorator(Color.RED, eventDays, getContext());
+//        calendarView.addDecorator(eventHighlighter);
 
         Event MarcosDinner = new ConcreteEvent(time, time, new User(), new ArrayList<User>());
         Event SehbazzDinner = new ConcreteEvent(time1, time1, new User(), new ArrayList<User>());
@@ -78,7 +78,7 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
         super(R.layout.home_fragment);
 
         db = Database.getInstance();
-        calendarView = (MaterialCalendarView) this.getView().findViewById(R.id.calendarView);
+        //calendarView = (MaterialCalendarView) this.getView().findViewById(R.id.calendarView);
 
         db.getUsersCollectionRef().document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -110,7 +110,7 @@ public class MainEventFragment extends Fragment implements RecyclerClickListener
                         }
                     }
                 });
-//
+
 //        List<CalendarDay> eventDays = new ArrayList<>();
 //
 //        CalendarDay a = CalendarDay.from(2023, 01, 8);
