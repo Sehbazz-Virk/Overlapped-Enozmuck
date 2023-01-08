@@ -17,7 +17,8 @@ import java.util.ArrayList;
 public class DateSelect {
     ArrayList<LocalDate> datesSelected;
     AlertDialog timeDialog = null;
-    
+
+
     public DateSelect() {
         this.datesSelected = new ArrayList<>();
     }
@@ -27,9 +28,9 @@ public class DateSelect {
     }
 
     //Main event call to handle the user input for date selection:
-//    public launchDateSelect() {
-//        //Create dialog here:
-//    }
+    public void launchDateSelect() {
+        //Create dialog here:
+    }
 
     public ArrayList<LocalDate> getEventDates() {
         return this.datesSelected;
