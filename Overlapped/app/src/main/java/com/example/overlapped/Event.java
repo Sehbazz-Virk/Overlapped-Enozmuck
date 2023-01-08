@@ -47,4 +47,6 @@ public abstract class Event {
     public void addUser(User user) {
         users.add(user);
     }
+
+    public abstract String getType();
 }
