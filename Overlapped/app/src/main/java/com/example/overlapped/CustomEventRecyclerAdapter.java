@@ -4,6 +4,7 @@ package com.example.overlapped;
 import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CustomEventRecyclerAdapter extends RecyclerView.Adapter<CustomEventRecyclerAdapter.ViewHolder>  {
@@ -26,12 +28,16 @@ public class CustomEventRecyclerAdapter extends RecyclerView.Adapter<CustomEvent
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.event_container_view, parent, false);
+
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        holder.getMonthText().setText(getEvents().get(position)//TODO Add the getText from the event here);
+        String date = this.events.get(position).getTimes().toString();
+        holder.getMonthText().setText(date);
         Log.i("Fix", "Please fix the OnBindViewHolder");
     }
 
@@ -46,28 +52,17 @@ public class CustomEventRecyclerAdapter extends RecyclerView.Adapter<CustomEvent
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView monthText;
-        private TextView dayNumberText;
-        private TextView nameOfEventText;
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
             monthText = view.findViewById(R.id.month_text);
-            dayNumberText = view.findViewById(R.id.day_number_text);
-            nameOfEventText = view.findViewById(R.id.event_title);
         }
 
         public TextView getMonthText() {
             return this.monthText;
         }
-
-        public TextView getDayNumberText() {
-            return this.dayNumberText;
-        }
-
-        public TextView getNameOfEventText() {
-            return this.nameOfEventText;
-        }
+        
     }
 
 }

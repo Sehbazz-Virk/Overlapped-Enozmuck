@@ -5,8 +5,12 @@ import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.time.OffsetDateTime;
+import java.time.OffsetTime;
+import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
@@ -22,26 +26,108 @@ public class PotentialEvent extends Event {
     private LocalDateTime latestTime;
     private int duration;
 
+    ArrayList<Pair<Integer, Integer>> days;
+
     // months -> days -> half hours -> List[] tuples
     // HashMap<int, HashMap> months
-    HashMap<Integer, HashMap<Integer, HashMap<Integer, ArrayList<Pair<String, Integer>>>>> availabilities;
+    HashMap<Integer, HashMap<Integer, HashMap<Integer, ArrayList<Pair<String, Integer>>>>> availabilities = new HashMap<>();
 
-    public void findTime() {
+    public PotentialEvent(User owner, List<User> users, LocalDateTime earliestTime, LocalDateTime latestTime, int duration, ArrayList<Pair<Integer, Integer>> days) {
+        super(owner, users);
+        this.earliestTime = earliestTime;
+        this.latestTime = latestTime;
+        this.duration = duration;
+        this.days = days;
 
-     Integer bestScore = -1;
-     LocalDateTime bestTime;
+        int startHalfHour = earliestTime.getHour() * 2 + earliestTime.getMinute() / 30;
+        int endHalfHour = latestTime.getHour() * 2 + latestTime.getMinute() / 30;
 
 
-     // sort the 4-element array of "tuples" by the first element
-     Arrays.sort(array, new Comparator<Object[]>() {
-        @Override
-        public int compare(Object[] o1, Object[] o2) {
-            Integer i1 = (Integer) (o1[0]);
-            Integer i2 = (Integer) (o2[0]);
-            return i1.compareTo(i2);
+        for (int i = 0; i < days.size(); i++) {
+            int month = days.get(i).first;
+            int day = days.get(i).second;
+            if (!availabilities.containsKey(month)) {
+                availabilities.put(month, new HashMap<>());
+            }
+
+            if (!availabilities.get(month).containsKey(day)) {
+                availabilities.get(month).put(day, new HashMap<>());
+            } else {
+                continue;
+            }
+
+            HashMap<Integer, ArrayList<Pair<String, Integer>>> avails = new HashMap<>();
+
+            for (int j = startHalfHour; j <= endHalfHour; j++) {
+                avails.put(j, new ArrayList<>());
+            }
+
         }
-     });
+    }
 
+    public LocalDateTime[] findTime() {
+
+        int months;
+        int days;
+        int hHours;
+
+        LocalDateTime wStart = earliestTime;
+        LocalDateTime wEnd = earliestTime.plusMinutes(30*duration);
+        LocalDateTime wCurrent;
+        int offset = 0;
+        int score = 0;
+        int tDuration = 30*duration;
+
+        Integer[][] top4 = new Integer[4][2];
+
+        for (int i = 0; i < 4; i++){
+            top4[i][0] = 0;
+            top4[i][1] = 0;
+        }
+
+        while (wEnd.plusMinutes(tDuration-1).isBefore(latestTime)){
+            for (int i = 0; i < duration; i++){
+                wCurrent = wStart.plusMinutes(30*i);
+                months = wCurrent.getMonthValue();
+                days = wCurrent.getDayOfMonth();
+                hHours = wCurrent.getHour()*2 + wCurrent.getMinute() / 30;
+
+                for (int n = 0; n < availabilities.get(months).get(days).get(hHours).size(); n++) {
+                    score += (int) availabilities.get(months).get(days).get(hHours).get(n).second;
+                }
+            }
+
+            top4[3][0] = score;
+            top4[3][1] = offset;
+            offset += 1;
+
+            wStart = wStart.plusMinutes(30);
+            wEnd = wEnd.plusMinutes(30);
+
+            top4 = sortByFirstIndex(top4);
+        }
+
+        LocalDateTime[] result = new LocalDateTime[3];
+
+        for (int i = 0; i < 3; i++){
+            result[i] = earliestTime.plusMinutes(top4[i][1]*30);
+        }
+        return result;
+
+
+    }
+
+    private Integer[][] sortByFirstIndex(Integer[][] array){
+        // sort the 4-element array of "tuples" by the first element
+        Arrays.sort(array, new Comparator<Object[]>() {
+            @Override
+            public int compare(Object[] o1, Object[] o2) {
+                Integer i1 = (Integer) (o1[0]);
+                Integer i2 = (Integer) (o2[0]);
+                return i2.compareTo(i1);
+            }
+        });
+        return array;
     }
 
     public List<Pair<String, Integer>> getAvailabilities(int month, int day, int halfHour) {
