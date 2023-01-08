@@ -1,11 +1,13 @@
 package com.example.overlapped;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public abstract class Event {
     String id;
     User owner;
-    User[] users;
+    ArrayList<User> users;
     LocalDateTime times;
 
     Database db = new Database().getInstance();
@@ -14,7 +16,7 @@ public abstract class Event {
     public Event(){}
 
     // Constructor for creating a new Event that does not already exist
-    public Event(User owner, User[] users, LocalDateTime times){
+    public Event(User owner, ArrayList<User> users, LocalDateTime times){
         this.owner = owner;
         this.users = users;
         this.times = times;
@@ -44,11 +46,11 @@ public abstract class Event {
         this.owner = owner;
     }
 
-    public User[] getUsers() {
+    public ArrayList<User> getUsers() {
         return users;
     }
 
-    public void setUsers(User[] users) {
+    public void setUsers(ArrayList<User> users) {
         this.users = users;
     }
 
