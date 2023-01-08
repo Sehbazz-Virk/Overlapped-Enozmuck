@@ -36,23 +36,6 @@ public class Database {
         return db_;
     }
 
-    public void addEventTest1(UUID ownerID) {
-
-        Map<String, Object> eventDetails = new HashMap<>();
-        eventDetails.put("owner", ownerID.toString());
-        events.document(UUID.randomUUID().toString()).set(eventDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Log.d("wow", "yay");
-                } else {
-                    Log.d("balls","balls");
-                }
-            }
-        });
-        //events.add(eventDetails);
-    }
-
     public void addEventTest(UUID ownerID) {
 
         Map<String, Object> eventDetails = new HashMap<>();
