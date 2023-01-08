@@ -31,6 +31,7 @@ public class CreateEventFragment extends Fragment {
     public void initializeViews() {
         eventTitleEntry = myView.findViewById(R.id.event_title);
         // add calendar Karan
+//        selectDateRange = myView.findViewById(R.id.date_range_button);
         selectFromTime = myView.findViewById(R.id.select_from_time);
         selectEndTime = myView.findViewById(R.id.select_end_time);
         createEvent = myView.findViewById(R.id.create_event);
