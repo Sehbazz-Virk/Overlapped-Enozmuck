@@ -14,19 +14,25 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstance);
         setContentView(R.layout.event_activity);
         Log.i("Activity: ", "Arrived at EventActivity successfully!");
+        launchHomeFragment();
+    }
+
+    public void launchHomeFragment() {
+        //TODO: fill with home event fragment code.
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.event_fragment_container, CreateEventFragment.class, null, "CreateEventFragment")
+                .replace(R.id.event_fragment_container, MainEventFragment.class, null, "MainEventFragment")
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
     }
 
-    public void launchHomeFragment() {
-        //TODO: fill with home event fragment code.
-    }
-
     public void launchCreateEvent() {
         //TODO: fill with create event code.
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.event_fragment_container, CreateEventFragment.class, null, "CreateEventFragment")
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
     }
 
     public void launchViewEvent() {
